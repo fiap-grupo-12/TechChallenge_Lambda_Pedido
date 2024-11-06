@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "YpsTMOhLOOwckul1uOePaJBH8YOQ/FDzhasrG6ymUrA=",
+  "Source": "FIAP.TechChallenge.LambdaPedido.API",
+  "BasePath": "_content/FIAP.TechChallenge.LambdaPedido.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

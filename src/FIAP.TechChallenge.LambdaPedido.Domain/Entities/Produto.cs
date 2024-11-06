@@ -1,0 +1,16 @@
+﻿using Amazon.DynamoDBv2.DataModel;
+
+namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
+{
+    public class Produto : EntityBase
+    {
+        [DynamoDBProperty("nome")]
+        public string Nome { get; set; }
+
+        [DynamoDBProperty("valor")]
+        public double Valor { get; set; }//{ get => String.Format("{0:0.00}", _valor); set => _valor = Convert.ToDouble(value); }
+
+        //[DynamoDBProperty("categoria")]
+        //public Categoria CategoriaProduto { get; set; }
+    }
+}
