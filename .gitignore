@@ -11,4 +11,4 @@ Debug/
 *.dll
 *.cache
 net8.0/
-/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.assets.cache
+obj/Debug/net8.0
