@@ -17,9 +17,9 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
             _mapper = mapper;
         }
 
-        public StatusPagamentoResponse Execute(int id)
+        public async Task<StatusPagamentoResponse> Execute(int id)
         {
-            var result = _pedidoRepository.GetById(id);
+            var result = await _pedidoRepository.GetById(id);
 
             return _mapper.Map<StatusPagamentoResponse>(result);
         }

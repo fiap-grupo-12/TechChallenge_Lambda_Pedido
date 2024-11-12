@@ -17,9 +17,9 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
             _mapper = mapper;
         }
 
-        public IList<PedidoResponse> Execute()
+        public async Task<IList<PedidoResponse>> Execute()
         {
-            var result = _pedidoRepository.GetAll();
+            var result = await _pedidoRepository.GetAll();
 
             return _mapper.Map<IList<PedidoResponse>>(result);
         }

@@ -45,10 +45,17 @@ jobs:
           aws-region: us-east-1
 
       - name: Upload to S3
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: aws s3 cp lambda_pedido_function.zip s3://code-lambdas-functions/
 
+  SonarCloud:
+    needs: Build
+    uses: ./.github/workflows/sonar.yaml
+    secrets: 
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   CreateLambda: 
-    needs: 'Build'
+    needs: 'SonarCloud'
     runs-on: ubuntu-latest 
     defaults:
       run:
@@ -63,6 +70,7 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Apply Terraform
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve    
 
     

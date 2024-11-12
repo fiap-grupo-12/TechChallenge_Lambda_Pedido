@@ -7,7 +7,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
 {
     public class AtualizarStatusPagamentoUseCase(IPedidoRepository pedidoRepository) : IAtualizarStatusPagamentoUseCase
     {
-        async Task<bool> IUseCaseAsync<AtualizarStatusPagamentoRequest, bool>.Execute(AtualizarStatusPagamentoRequest request)
+        public async Task<bool> Execute(AtualizarStatusPagamentoRequest request)
         {
             Pedido pedido = await pedidoRepository.GetById(request.PedidoId);
 
@@ -25,7 +25,6 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
             {
                 return false;
             }
-
         }
     }
 }

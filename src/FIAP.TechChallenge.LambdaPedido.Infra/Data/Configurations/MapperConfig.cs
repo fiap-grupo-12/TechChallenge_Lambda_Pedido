@@ -12,22 +12,22 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Configurations
         {
             //Request
             CreateMap<ClienteRequest, Cliente>().ReverseMap();
-            CreateMap<PagamentoRequest, FormaPagamento>().ReverseMap();
+            CreateMap<FormaPagamentoRequest, FormaPagamento>().ReverseMap();
             CreateMap<ItemDePedidoRequest, ItemDePedido>().ReverseMap();
 
             //Response
             CreateMap<ClienteResponse, Cliente>().ReverseMap();
             CreateMap<FormaPagamentoResponse, FormaPagamento>().ReverseMap();
-            CreateMap<Pedido, PedidoResponse>()
-                .ForMember(dest => dest.ItensDePedido, opt => opt.MapFrom(src => src.ItensDePedido))
-                .ForMember(dest => dest.StatusPedido, opt => opt.MapFrom(src => src.StatusPedido.GetDescription()))
-                .ForMember(dest => dest.StatusPagamento, opt => opt.MapFrom(src => src.StatusPagamento.GetDescription()))
-                .ReverseMap();
+            CreateMap<Pedido, PedidoResponse>().ReverseMap();
+            CreateMap<Cliente, ClienteResponse>().ReverseMap();
+            CreateMap<FormaPagamento, FormaPagamentoResponse>().ReverseMap();
+            CreateMap<ItemDePedido, ItensDePedidoResponse>().ReverseMap();
+            CreateMap<Produto, ProdutoResponse>().ReverseMap();
+           
+
             CreateMap<Pedido, StatusPagamentoResponse>()
                 .ForMember(dest => dest.StatusPagamento, opt => opt.MapFrom(src => src.StatusPagamento.GetDescription()))
                 .ReverseMap();
-            CreateMap<ItemDePedido, ItensDePedidoResponse>().ReverseMap();
-            CreateMap<Produto, ProdutoResponse>().ReverseMap();
         }
     }
 }

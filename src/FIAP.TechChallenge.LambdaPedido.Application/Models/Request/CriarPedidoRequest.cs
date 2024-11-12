@@ -17,10 +17,10 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Request
 
         [Required(ErrorMessage = "É obrigatório informar uma FORMA DE PAGAMENTO para finalizar o pedido.")]
         [JsonPropertyName("idFormaPagamento")]
-        public PagamentoRequest FormaPagamento { get; set; }
+        public FormaPagamentoRequest FormaPagamento { get; set; }
     }
 
-    public class PagamentoRequest
+    public class FormaPagamentoRequest
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

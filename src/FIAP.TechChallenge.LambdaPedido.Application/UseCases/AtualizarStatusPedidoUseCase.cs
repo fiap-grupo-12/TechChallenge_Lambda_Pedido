@@ -13,7 +13,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
             _pedidoRepository = pedidoRepository;
         }
 
-        async Task<bool> IUseCaseAsync<AtualizarStatusPedidoRequest, bool>.Execute(AtualizarStatusPedidoRequest request)
+        public async Task<bool> Execute(AtualizarStatusPedidoRequest request)
         {
             Pedido pedido = await _pedidoRepository.GetById(request.Id);
             if (pedido != null)
