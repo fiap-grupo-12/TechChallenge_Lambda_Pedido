@@ -4,5 +4,11 @@
 
 /.vs
 /src/.vs/FIAP.TechChallenge.LambdaPedido
-/src/FIAP.TechChallenge.LambdaPedido/bin/Release/net8.0
-/src/.vs/ProjectEvaluation
+bin
+.vs/
+obj/
+Debug/
+*.dll
+*.cache
+net8.0/
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.assets.cache
