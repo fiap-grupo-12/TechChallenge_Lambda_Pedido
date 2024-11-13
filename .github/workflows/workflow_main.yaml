@@ -3,11 +3,10 @@ name: 'Terraform'
 on:
   push:
     branches: [ "release", "main" ]
-  pull_request:
-    branches: [ "release", "main" ]
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   Build:
