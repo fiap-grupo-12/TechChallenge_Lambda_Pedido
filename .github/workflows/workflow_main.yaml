@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "release", "main" ]
+    branches: [ "release", "main", "feature" ]
 
 permissions:
   pull-requests: read
@@ -38,6 +38,7 @@ jobs:
         run: zip -r lambda_pedido_function.zip out/*
 
       - name: Configure AWS credentials
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
