@@ -155,3 +155,6 @@ C:\Users\henri\source\repos\gitlmabda\lambda_pedido\src\FIAP.TechChallenge.Lambd
 C:\Users\henri\source\repos\gitlmabda\lambda_pedido\src\FIAP.TechChallenge.LambdaPedido.Tests\obj\Release\net8.0\FIAP.TechChallenge.LambdaPedido.Tests.pdb
 C:\Users\henri\source\repos\gitlmabda\lambda_pedido\src\FIAP.TechChallenge.LambdaPedido.Tests\obj\Release\net8.0\FIAP.TechChallenge.LambdaPedido.Tests.genruntimeconfig.cache
 C:\Users\henri\source\repos\gitlmabda\lambda_pedido\src\FIAP.TechChallenge.LambdaPedido.Tests\obj\Release\net8.0\ref\FIAP.TechChallenge.LambdaPedido.Tests.dll
+C:\Users\henri\source\repos\gitlmabda\lambda_pedido\src\FIAP.TechChallenge.LambdaPedido.Tests\bin\Release\net8.0\Bogus.dll
+C:\Users\henri\source\repos\gitlmabda\lambda_pedido\src\FIAP.TechChallenge.LambdaPedido.Tests\bin\Release\net8.0\Castle.Core.dll
+C:\Users\henri\source\repos\gitlmabda\lambda_pedido\src\FIAP.TechChallenge.LambdaPedido.Tests\bin\Release\net8.0\Moq.dll

@@ -1,4 +1,4 @@
-Ôªø# Ignorar arquivos bin√°rios
+# Ignorar arquivos bin·rios
 *.dll
 *.exe
 *.so
@@ -8,7 +8,7 @@
 bin/
 obj/
 
-# Ignorar arquivos de configura√ß√£o de IDE
+# Ignorar arquivos de configuraÁ„o de IDE
 .vscode/
 .idea/
 *.suo
@@ -17,7 +17,7 @@ obj/
 *.sln.docstates
 out/
 
-# Ignorar arquivos espec√≠ficos do Visual Studio
+# Ignorar arquivos especÌficos do Visual Studio
 *.csproj.user
 *.vcxproj.user
 *.vcxproj.filters
@@ -43,5 +43,3 @@ _ReSharper.Caches/
 *.nupkg
 *.snupkg
 packages/
-/.vs
-/src/.vs

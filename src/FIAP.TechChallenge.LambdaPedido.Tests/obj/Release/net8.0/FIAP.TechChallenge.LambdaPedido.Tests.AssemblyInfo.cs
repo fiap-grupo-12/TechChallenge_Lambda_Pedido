@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FIAP.TechChallenge.LambdaPedido.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb7f8f330331dab130f04169716860c91bde210e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55baee734effb72e78ad202a59a09f7ccace690d")]
 [assembly: System.Reflection.AssemblyProductAttribute("FIAP.TechChallenge.LambdaPedido.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FIAP.TechChallenge.LambdaPedido.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
