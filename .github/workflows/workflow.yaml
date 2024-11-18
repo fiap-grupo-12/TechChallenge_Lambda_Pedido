@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "release", "main" ]
+    branches: [ "release", "main", "feature/*", "release/*" ]
 
 permissions:
   pull-requests: read
@@ -29,7 +29,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test
+        run: dotnet test --collect "Code Coverage"
 
       - name: Publish
         run: dotnet publish -c Release -o out
@@ -38,6 +38,7 @@ jobs:
         run: zip -r lambda_pedido_function.zip out/*
 
       - name: Configure AWS credentials
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}

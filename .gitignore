@@ -45,3 +45,8 @@ _ReSharper.Caches/
 packages/
 /.vs
 /src/.vs
+/src/FIAP.TechChallenge.LambdaPedido/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.API.AssemblyInfo.cs
+/src/FIAP.TechChallenge.LambdaPedido/obj/FIAP.TechChallenge.LambdaPedido.API.csproj.nuget.dgspec.json
+/src/FIAP.TechChallenge.LambdaPedido/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.API.AssemblyInfoInputs.cache
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/FIAP.TechChallenge.LambdaPedido.Tests.csproj.nuget.dgspec.json
+/src/FIAP.TechChallenge.LambdaPedido/obj/project.assets.json
