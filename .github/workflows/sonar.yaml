@@ -30,4 +30,4 @@ jobs:
           args:
             -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido
             -Dsonar.organization=fiap-grupo-12
-          projectBaseDir: .
+          projectBaseDir: ./src
