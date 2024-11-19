@@ -29,8 +29,38 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test --collect "Code Coverage"
+        run: dotnet test --collect:"XPlat Code Coverage" --results-directory coverage
 
+      - name: Convertendo coverage report
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverage/report -reporttypes:Cobertura
+
+      - name: Publish test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: coverage/report
+
+  SonarCloud:
+    needs: Build
+    uses: ./.github/workflows/sonar.yaml
+    secrets: 
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  Publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
       - name: Publish
         run: dotnet publish -c Release -o out
 
@@ -63,12 +93,6 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: aws s3 cp lambda_pedido_function.zip s3://code-lambdas-functions/
 
-  SonarCloud:
-    needs: Build
-    uses: ./.github/workflows/sonar.yaml
-    secrets: 
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   CreateLambda: 
     needs: 'SonarCloud'
     runs-on: ubuntu-latest 
@@ -86,6 +110,4 @@ jobs:
 
       - name: Apply Terraform
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve    
-
-    
+        run: terraform apply -auto-approve
