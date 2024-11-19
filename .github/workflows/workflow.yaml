@@ -54,7 +54,7 @@ jobs:
 
             if ! aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
               echo "Bucket não existe. Criando bucket..."
-              aws s3api create-bucket --bucket "$BUCKET_NAME" --region "$REGION" --create-bucket-configuration LocationConstraint="$REGION"
+              aws s3api create-bucket --bucket "$BUCKET_NAME"
             else
               echo "Bucket validado. Processo de upload."
             fi
