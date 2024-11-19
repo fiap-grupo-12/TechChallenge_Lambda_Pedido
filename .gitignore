@@ -50,3 +50,5 @@ packages/
 /src/FIAP.TechChallenge.LambdaPedido/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.API.AssemblyInfoInputs.cache
 /src/FIAP.TechChallenge.LambdaPedido.Tests/obj/FIAP.TechChallenge.LambdaPedido.Tests.csproj.nuget.dgspec.json
 /src/FIAP.TechChallenge.LambdaPedido/obj/project.assets.json
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.assets.cache
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.csproj.FileListAbsolute.txt
