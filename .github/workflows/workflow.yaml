@@ -33,9 +33,25 @@ jobs:
 
   SonarCloud:
     needs: Build
-    uses: ./.github/workflows/sonar.yaml
-    secrets: 
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+        shell: bash
+    steps:
+      - name: Checkout code
+        uses: actions/labeler@v4
+      - name: Analyze with SonarCloud
+        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args:
+            -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido
+            -Dsonar.organization=fiap-grupo-12
+          projectBaseDir: .
+      - name: Test
+        run: dotnet test --collect:"Code Coverage"
 
   Publish:
     needs: SonarCloud
