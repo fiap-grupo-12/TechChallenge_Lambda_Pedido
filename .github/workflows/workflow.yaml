@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "release", "main", "feature/*", "release/*" ]
+    branches: [ "main", "release/*" ]
 
 permissions:
   pull-requests: read
@@ -29,18 +29,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test --collect:"XPlat Code Coverage" --results-directory coverage
-
-      - name: Convertendo coverage report
-        run: |
-          dotnet tool install --global dotnet-reportgenerator-globaltool
-          reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverage/report -reporttypes:Cobertura
-
-      - name: Publish test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: coverage/report
+        run: dotnet test --collect:"Code Coverage"
 
   SonarCloud:
     needs: Build
@@ -49,6 +38,7 @@ jobs:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   Publish:
+    needs: SonarCloud
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -94,7 +84,7 @@ jobs:
         run: aws s3 cp lambda_pedido_function.zip s3://code-lambdas-functions/
 
   CreateLambda: 
-    needs: 'SonarCloud'
+    needs: 'Publish'
     runs-on: ubuntu-latest 
     defaults:
       run:
