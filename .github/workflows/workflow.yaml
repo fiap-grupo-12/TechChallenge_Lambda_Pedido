@@ -117,7 +117,6 @@ jobs:
         aws-region: us-east-1
         
     - name: Verificando se bucket está criado
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
             BUCKET_NAME="terraform-tfstate-grupo12-fiap-2024"
             REGION="us-east-1"
