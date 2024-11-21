@@ -29,18 +29,27 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-      
+        run: dotnet test --collect:"Code Coverage"
+
+  SonarCloud:
+    needs: Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+
+    steps:
+      - name: Checkout code
+        uses: actions/labeler@v4
       - name: Analyze with SonarCloud
+        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-          -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido \
-          -Dsonar.organization=fiap-grupo-12 \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=$SONAR_TOKEN
+        with:
+          args:
+            -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido
+            -Dsonar.organization=fiap-grupo-12
+          projectBaseDir: .
 
   Publish:
     needs: SonarCloud
