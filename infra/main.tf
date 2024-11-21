@@ -9,10 +9,6 @@ terraform {
     region = "us-east-1"
   }
 }
-provider "aws" {
-  region = "us-east-1"
-}
-
 
 resource "aws_iam_role" "lambda_execution_role" {
   name = "lambda_pedido_execution_role"

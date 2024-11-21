@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "release", "main", "feature/*", "release/*" ]
+    branches: [ "main", "release/*" ]
 
 permissions:
   pull-requests: read
@@ -29,8 +29,42 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test --collect "Code Coverage"
+        run: dotnet test --collect:"Code Coverage"
 
+  SonarCloud:
+    needs: Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+
+    steps:
+      - name: Checkout code
+        uses: actions/labeler@v4
+      - name: Analyze with SonarCloud
+        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args:
+            -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido
+            -Dsonar.organization=fiap-grupo-12
+          projectBaseDir: .
+
+  Publish:
+    needs: SonarCloud
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
       - name: Publish
         run: dotnet publish -c Release -o out
 
@@ -63,14 +97,8 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: aws s3 cp lambda_pedido_function.zip s3://code-lambdas-functions/
 
-  SonarCloud:
-    needs: Build
-    uses: ./.github/workflows/sonar.yaml
-    secrets: 
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   CreateLambda: 
-    needs: 'SonarCloud'
+    needs: 'Publish'
     runs-on: ubuntu-latest 
     defaults:
       run:
@@ -86,6 +114,4 @@ jobs:
 
       - name: Apply Terraform
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve    
-
-    
+        run: terraform apply -auto-approve
