@@ -115,6 +115,19 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
+        
+    - name: Verificando se bucket está criado
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+            BUCKET_NAME="terraform-tfstate-grupo12-fiap-2024"
+            REGION="us-east-1"
+
+            if ! aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
+              echo "Bucket não existe. Criando bucket..."
+              aws s3api create-bucket --bucket "$BUCKET_NAME"
+            else
+              echo "Bucket validado. Processo de upload."
+            fi
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
