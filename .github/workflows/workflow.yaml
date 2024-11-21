@@ -29,8 +29,8 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test --collect:"Code Coverage"
-        
+        run: dotnet test --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      
       - name: Analyze with SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
