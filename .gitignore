@@ -56,3 +56,15 @@ packages/
 /src/FIAP.TechChallenge.LambdaPedido.Application/obj/Debug/net8.0/*
 */src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/*.cache
 /src/coverage/*
+/src/FIAP.TechChallenge.LambdaPedido.Application/obj/FIAP.TechChallenge.LambdaPedido.Application.csproj.nuget.dgspec.json
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/FIAP.TechChallenge.LambdaPedido.Domain.csproj.nuget.dgspec.json
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.assets.cache
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/FIAP.TechChallenge.LambdaPedido.Domain.csproj.nuget.g.targets
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/project.assets.json
+/src/FIAP.TechChallenge.LambdaPedido.Infra/obj/FIAP.TechChallenge.LambdaPedido.Infra.csproj.nuget.dgspec.json
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.AssemblyInfoInputs.cache
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/FIAP.TechChallenge.LambdaPedido.Tests.csproj.nuget.g.props
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.assets.cache
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/FIAP.TechChallenge.LambdaPedido.Tests.csproj.nuget.g.targets
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/project.assets.json
+/src/FIAP.TechChallenge.LambdaPedido.Tests/coverage.json
