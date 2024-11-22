@@ -57,13 +57,11 @@ resource "aws_iam_role_policy_attachment" "lambda_execution_policy" {
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
-resource "aws_lambda_function" "example" {
-  function_name = "lambda_pedido"
-  runtime       = "dotnet8"
-  role          = aws_iam_role.lambda_execution_role.arn
-  s3_bucket     = aws_s3_bucket.lambda_bucket.bucket
-  s3_key        = "lambda_pedido_function.zip"
+resource "aws_cloudformation_stack" "serverless_stack" {
+  name          = "lambda_pedido"
+  template_body = file("./src/FIAP.TechChallenge.LambdaPedido/serverless.template")
 }
+
 
 resource "aws_s3_bucket" "lambda_bucket" {
   bucket = "code-lambdas-functions"
