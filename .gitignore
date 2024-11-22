@@ -52,3 +52,8 @@ packages/
 /src/FIAP.TechChallenge.LambdaPedido/obj/project.assets.json
 /src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.assets.cache
 /src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.csproj.FileListAbsolute.txt
+/src/FIAP.TechChallenge.LambdaPedido.Application/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Application.assets.cache
+/src/FIAP.TechChallenge.LambdaPedido.Application/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Application.csproj.FileListAbsolute.txt
+/src/FIAP.TechChallenge.LambdaPedido.Infra/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Infra.csproj.FileListAbsolute.txt
+/src/FIAP.TechChallenge.LambdaPedido.Infra/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Infra.assets.cache
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.csproj.FileListAbsolute.txt
