@@ -59,7 +59,7 @@ resource "aws_iam_role_policy_attachment" "lambda_execution_policy" {
 
 resource "aws_cloudformation_stack" "serverless_stack" {
   name          = "lambda_pedido"
-  template_body = file("./src/FIAP.TechChallenge.LambdaPedido/serverless.template")
+  template_body = file("../src/FIAP.TechChallenge.LambdaPedido/serverless.template")
 }
 
 
