@@ -73,5 +73,5 @@ resource "aws_s3_bucket_object" "lambda_zip" {
   bucket = aws_s3_bucket.lambda_bucket.bucket
   key    = "lambda_pedido_function.zip"
   source = "lambda_pedido_function.zip"
-  etag   = filemd5("lambda_pedido_function.zip")
+  etag   = filemd5("code-lambdas-functions/lambda_pedido_function.zip")
 }
