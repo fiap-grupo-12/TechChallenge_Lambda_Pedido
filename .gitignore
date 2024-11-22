@@ -57,3 +57,4 @@ packages/
 /src/FIAP.TechChallenge.LambdaPedido.Infra/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Infra.csproj.FileListAbsolute.txt
 /src/FIAP.TechChallenge.LambdaPedido.Infra/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Infra.assets.cache
 /src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.csproj.FileListAbsolute.txt
+*/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/*.cache

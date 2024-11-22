@@ -29,7 +29,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Test
-        run: dotnet test --collect:"Code Coverage"
+        run: dotnet test /p:CollectCoverage=true
 
   SonarCloud:
     needs: Build
@@ -50,14 +50,6 @@ jobs:
             -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido
             -Dsonar.organization=fiap-grupo-12
           projectBaseDir: .
-      - name: Analyze Tests
-        run: |
-            dotnet sonarscanner begin /k:"fiap-grupo-12_TechChallenge_Lambda_Pedido"
-                /d:sonar.token=${{ secrets.SONAR_TOKEN }}
-                /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-            dotnet build --no-incremental
-            dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
-            dotnet sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }}
 
   Publish:
     needs: SonarCloud
