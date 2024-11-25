@@ -26,16 +26,24 @@
         "Tool": "Amazon.Lambda.Annotations"
       },
       "Properties": {
-        "FunctionName": { "Ref": "LambdaFunctionName" },
-        "Runtime": { "Ref": "Runtime" },
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Runtime": {
+          "Ref": "Runtime"
+        },
         "CodeUri": {
           "Fn::Join": [
             "",
             [
               "s3://",
-              { "Ref": "S3Bucket" },
+              {
+                "Ref": "S3Bucket"
+              },
               "/",
-              { "Ref": "S3Key" }
+              {
+                "Ref": "S3Key"
+              }
             ]
           ]
         },
@@ -46,7 +54,9 @@
         ],
         "PackageType": "Zip",
         "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_PutStatusPag_Generated::PutStatusPag",
-        "Role": { "Ref": "Role" }
+        "Role": {
+          "Ref": "Role"
+        }
       }
     },
     "CriarPedido": {
@@ -64,16 +74,24 @@
         }
       },
       "Properties": {
-        "FunctionName": { "Ref": "LambdaFunctionName" },
-        "Runtime": { "Ref": "Runtime" },
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Runtime": {
+          "Ref": "Runtime"
+        },
         "CodeUri": {
           "Fn::Join": [
             "",
             [
               "s3://",
-              { "Ref": "S3Bucket" },
+              {
+                "Ref": "S3Bucket"
+              },
               "/",
-              { "Ref": "S3Key" }
+              {
+                "Ref": "S3Key"
+              }
             ]
           ]
         },
@@ -93,7 +111,9 @@
             }
           }
         },
-        "Role": { "Ref": "Role" }
+        "Role": {
+          "Ref": "Role"
+        }
       }
     },
     "ObterPedidoPorId": {
@@ -111,16 +131,24 @@
         }
       },
       "Properties": {
-        "FunctionName": { "Ref": "LambdaFunctionName" },
-        "Runtime": { "Ref": "Runtime" },
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Runtime": {
+          "Ref": "Runtime"
+        },
         "CodeUri": {
           "Fn::Join": [
             "",
             [
               "s3://",
-              { "Ref": "S3Bucket" },
+              {
+                "Ref": "S3Bucket"
+              },
               "/",
-              { "Ref": "S3Key" }
+              {
+                "Ref": "S3Key"
+              }
             ]
           ]
         },
@@ -140,7 +168,9 @@
             }
           }
         },
-        "Role": { "Ref": "Role" }
+        "Role": {
+          "Ref": "Role"
+        }
       }
     },
     "ListarPedidos": {
@@ -158,16 +188,24 @@
         }
       },
       "Properties": {
-        "FunctionName": { "Ref": "LambdaFunctionName" },
-        "Runtime": { "Ref": "Runtime" },
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Runtime": {
+          "Ref": "Runtime"
+        },
         "CodeUri": {
           "Fn::Join": [
             "",
             [
               "s3://",
-              { "Ref": "S3Bucket" },
+              {
+                "Ref": "S3Bucket"
+              },
               "/",
-              { "Ref": "S3Key" }
+              {
+                "Ref": "S3Key"
+              }
             ]
           ]
         },
@@ -187,7 +225,9 @@
             }
           }
         },
-        "Role": { "Ref": "Role" }
+        "Role": {
+          "Ref": "Role"
+        }
       }
     },
     "ListarPedidosFiltrados": {
@@ -205,16 +245,24 @@
         }
       },
       "Properties": {
-        "FunctionName": { "Ref": "LambdaFunctionName" },
-        "Runtime": { "Ref": "Runtime" },
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Runtime": {
+          "Ref": "Runtime"
+        },
         "CodeUri": {
           "Fn::Join": [
             "",
             [
               "s3://",
-              { "Ref": "S3Bucket" },
+              {
+                "Ref": "S3Bucket"
+              },
               "/",
-              { "Ref": "S3Key" }
+              {
+                "Ref": "S3Key"
+              }
             ]
           ]
         },
@@ -234,7 +282,9 @@
             }
           }
         },
-        "Role": { "Ref": "Role" }
+        "Role": {
+          "Ref": "Role"
+        }
       }
     },
     "StatusDoPagamentoPorId": {
@@ -252,16 +302,24 @@
         }
       },
       "Properties": {
-        "FunctionName": { "Ref": "LambdaFunctionName" },
-        "Runtime": { "Ref": "Runtime" },
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Runtime": {
+          "Ref": "Runtime"
+        },
         "CodeUri": {
           "Fn::Join": [
             "",
             [
               "s3://",
-              { "Ref": "S3Bucket" },
+              {
+                "Ref": "S3Bucket"
+              },
               "/",
-              { "Ref": "S3Key" }
+              {
+                "Ref": "S3Key"
+              }
             ]
           ]
         },
@@ -281,7 +339,67 @@
             }
           }
         },
-        "Role": { "Ref": "Role" }
+        "Role": {
+          "Ref": "Role"
+        }
       }
     },
-    "AtualizarStatusDoPedido
+    "AtualizarStatusDoPedido": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootPut"
+        ],
+        "SyncedEventProperties": {
+          "RootPut": [
+            "Path",
+            "Method"
+          ]
+        }
+      },
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Runtime": {
+          "Ref": "Runtime"
+        },
+        "CodeUri": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "S3Bucket"
+              },
+              "/",
+              {
+                "Ref": "S3Key"
+              }
+            ]
+          ]
+        },
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_PutStatusPedido_Generated::PutStatusPedido",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/Pedido/Filtrados",
+              "Method": "GET"
+            }
+          }
+        },
+        "Role": {
+          "Ref": "Role"
+        }
+      }
+    }
+  }
+}
