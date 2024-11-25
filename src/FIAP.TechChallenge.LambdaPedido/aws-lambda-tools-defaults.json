@@ -8,6 +8,5 @@
   "profile": "default",
   "region": "us-east-1",
   "configuration": "Release",
-  "template": "serverless.template",
-  "template-parameters": ""
+  "template": "serverless.template"
 }

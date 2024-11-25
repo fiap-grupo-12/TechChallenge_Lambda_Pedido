@@ -57,15 +57,16 @@ resource "aws_iam_role_policy_attachment" "lambda_execution_policy" {
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
-resource "aws_cloudformation_stack" "serverless_stack" {
-  name          = "lambdaPedido"
-  template_body = file("../src/FIAP.TechChallenge.LambdaPedido/serverless.template")
-  capabilities  = ["CAPABILITY_IAM", "CAPABILITY_AUTO_EXPAND"]
-  parameters = {
-    LambdaFunctionName = "lambda_pedido_function"
-    S3Bucket           = "code-lambdas-functions"
-    S3Key              = "lambda_pedido_function.zip"
-    Runtime            = "dotnet8"
-    Role               = aws_iam_role.lambda_execution_role.arn
-  }
+resource "aws_lambda_function" "pedido_function" {
+  function_name = "lambda_pedido_function"
+  role          = aws_iam_role.lambda_execution_role.arn
+  runtime       = "dotnet8"
+  memory_size   = 512
+  timeout       = 30
+
+  # Código armazenado no S3
+  s3_bucket = "code-lambdas-functions"
+  s3_key    = "lambda_pedido_function.zip"
+
+  handler = "unused_handler_placeholder"
 }

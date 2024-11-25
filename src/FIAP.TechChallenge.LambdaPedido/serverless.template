@@ -1,64 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
-  "Description": "",
-  "Parameters": {
-    "LambdaFunctionName": {
-      "Type": "String"
-    },
-    "S3Bucket": {
-      "Type": "String"
-    },
-    "S3Key": {
-      "Type": "String"
-    },
-    "Runtime": {
-      "Type": "String"
-    },
-    "Role": {
-      "Type": "String"
-    }
-  },
   "Resources": {
-    "FIAPTechChallengeLambdaPedidoAPIFunctionPutStatusPagGenerated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations"
-      },
-      "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunctionName"
-        },
-        "Runtime": {
-          "Ref": "Runtime"
-        },
-        "CodeUri": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "S3Bucket"
-              },
-              "/",
-              {
-                "Ref": "S3Key"
-              }
-            ]
-          ]
-        },
-        "MemorySize": 512,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_PutStatusPag_Generated::PutStatusPag",
-        "Role": {
-          "Ref": "Role"
-        }
-      }
-    },
     "CriarPedido": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
@@ -74,27 +17,8 @@
         }
       },
       "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunctionName"
-        },
-        "Runtime": {
-          "Ref": "Runtime"
-        },
-        "CodeUri": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "S3Bucket"
-              },
-              "/",
-              {
-                "Ref": "S3Key"
-              }
-            ]
-          ]
-        },
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,
         "Policies": [
@@ -110,9 +34,6 @@
               "Method": "POST"
             }
           }
-        },
-        "Role": {
-          "Ref": "Role"
         }
       }
     },
@@ -131,27 +52,8 @@
         }
       },
       "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunctionName"
-        },
-        "Runtime": {
-          "Ref": "Runtime"
-        },
-        "CodeUri": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "S3Bucket"
-              },
-              "/",
-              {
-                "Ref": "S3Key"
-              }
-            ]
-          ]
-        },
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,
         "Policies": [
@@ -167,9 +69,6 @@
               "Method": "GET"
             }
           }
-        },
-        "Role": {
-          "Ref": "Role"
         }
       }
     },
@@ -188,27 +87,8 @@
         }
       },
       "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunctionName"
-        },
-        "Runtime": {
-          "Ref": "Runtime"
-        },
-        "CodeUri": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "S3Bucket"
-              },
-              "/",
-              {
-                "Ref": "S3Key"
-              }
-            ]
-          ]
-        },
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,
         "Policies": [
@@ -224,9 +104,6 @@
               "Method": "GET"
             }
           }
-        },
-        "Role": {
-          "Ref": "Role"
         }
       }
     },
@@ -245,27 +122,8 @@
         }
       },
       "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunctionName"
-        },
-        "Runtime": {
-          "Ref": "Runtime"
-        },
-        "CodeUri": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "S3Bucket"
-              },
-              "/",
-              {
-                "Ref": "S3Key"
-              }
-            ]
-          ]
-        },
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,
         "Policies": [
@@ -281,9 +139,6 @@
               "Method": "GET"
             }
           }
-        },
-        "Role": {
-          "Ref": "Role"
         }
       }
     },
@@ -302,27 +157,8 @@
         }
       },
       "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunctionName"
-        },
-        "Runtime": {
-          "Ref": "Runtime"
-        },
-        "CodeUri": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "S3Bucket"
-              },
-              "/",
-              {
-                "Ref": "S3Key"
-              }
-            ]
-          ]
-        },
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,
         "Policies": [
@@ -338,9 +174,6 @@
               "Method": "GET"
             }
           }
-        },
-        "Role": {
-          "Ref": "Role"
         }
       }
     },
@@ -359,27 +192,8 @@
         }
       },
       "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunctionName"
-        },
-        "Runtime": {
-          "Ref": "Runtime"
-        },
-        "CodeUri": {
-          "Fn::Join": [
-            "",
-            [
-              "s3://",
-              {
-                "Ref": "S3Bucket"
-              },
-              "/",
-              {
-                "Ref": "S3Key"
-              }
-            ]
-          ]
-        },
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,
         "Policies": [
@@ -388,17 +202,31 @@
         "PackageType": "Zip",
         "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_PutStatusPedido_Generated::PutStatusPedido",
         "Events": {
-          "RootGet": {
+          "RootPut": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/Pedido/Filtrados",
-              "Method": "GET"
+              "Path": "/Pedido/StatusPedido",
+              "Method": "PUT"
             }
           }
-        },
-        "Role": {
-          "Ref": "Role"
         }
+      }
+    },
+    "FIAPTechChallengeLambdaPedidoAPIFunctionPutStatusPagGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations"
+      },
+      "Properties": {
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_PutStatusPag_Generated::PutStatusPag"
       }
     }
   }
