@@ -61,15 +61,11 @@ resource "aws_cloudformation_stack" "serverless_stack" {
   name          = "lambdaPedido"
   template_body = file("../src/FIAP.TechChallenge.LambdaPedido/serverless.template")
   capabilities  = ["CAPABILITY_IAM", "CAPABILITY_AUTO_EXPAND"]
-}
-
-
-data "aws_s3_bucket" "lambda_bucket" {
-  bucket = "code-lambdas-functions"
-}
-
-resource "aws_s3_bucket_object" "lambda_zip" {
-  bucket = data.aws_s3_bucket.lambda_bucket.bucket
-  key    = "lambda_pedido_function.zip"
-  source = "lambda_pedido_function.zip"
+  parameters = {
+    LambdaFunctionName = "lambda_pedido_function"
+    S3Bucket           = "code-lambdas-functions"
+    S3Key              = "lambda_pedido_function.zip"
+    Runtime            = "dotnet8"
+    Role               = aws_iam_role.lambda_execution_role.arn
+  }
 }
