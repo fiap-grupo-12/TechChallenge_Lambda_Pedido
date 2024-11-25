@@ -68,3 +68,5 @@ packages/
 /src/FIAP.TechChallenge.LambdaPedido.Tests/obj/FIAP.TechChallenge.LambdaPedido.Tests.csproj.nuget.g.targets
 /src/FIAP.TechChallenge.LambdaPedido.Tests/obj/project.assets.json
 /src/FIAP.TechChallenge.LambdaPedido.Tests/coverage.json
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.AssemblyInfo.cs
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.AssemblyInfo.cs

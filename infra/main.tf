@@ -64,12 +64,12 @@ resource "aws_cloudformation_stack" "serverless_stack" {
 }
 
 
-resource "aws_s3_bucket" "lambda_bucket" {
+data "aws_s3_bucket" "lambda_bucket" {
   bucket = "code-lambdas-functions"
 }
 
 resource "aws_s3_bucket_object" "lambda_zip" {
-  bucket = aws_s3_bucket.lambda_bucket.bucket
+  bucket = data.aws_s3_bucket.lambda_bucket.bucket
   key    = "lambda_pedido_function.zip"
   source = "lambda_pedido_function.zip"
 }
