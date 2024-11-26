@@ -69,9 +69,6 @@ jobs:
 
       - name: Install Amazon Lambda Tools
         run: dotnet tool install -g Amazon.Lambda.Tools
-
-      - name: Add .NET tools to PATH
-        run: echo "::add-path::$(dotnet --list-sdks | head -1 | awk '{print $NF}')/dotnet/tools"
         
       - name: Publish Lambda Package
         run: dotnet lambda package --configuration Release --output-package ./lambda_pedido_function.zip
