@@ -66,13 +66,10 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Publish
-        run: dotnet publish -c Release -o out
 
-      - name: Zip published output
-        run: zip -r lambda_pedido_function.zip out/*
+      - name: Publish Lambda Package
+        run: dotnet lambda package --configuration Release --output-package ./lambda_pedido_function.zip
 
-            
       - name: Configure AWS credentials
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v3
@@ -84,7 +81,7 @@ jobs:
       - name: Verificando se bucket está criado
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
-            BUCKET_NAME="code-lambdas-functions"
+          BUCKET_NAME="code-lambdas-functions"
             REGION="us-east-1"
 
             if ! aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
@@ -96,7 +93,10 @@ jobs:
 
       - name: Upload to S3
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: aws s3 cp lambda_pedido_function.zip s3://code-lambdas-functions/
+        run: |
+          BUCKET_NAME="code-lambdas-functions"
+          aws s3api head-bucket --bucket "$BUCKET_NAME" || aws s3api create-bucket --bucket "$BUCKET_NAME"
+          aws s3 cp lambda_pedido_function.zip s3://$BUCKET_NAME/
 
   CreateLambda: 
     needs: 'Publish'

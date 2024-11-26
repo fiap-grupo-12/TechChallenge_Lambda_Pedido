@@ -67,8 +67,6 @@ resource "aws_lambda_function" "pedido_function" {
   # Código armazenado no S3
   s3_bucket = "code-lambdas-functions"
   s3_key    = "lambda_pedido_function.zip"
-
-  handler = "unused_handler_placeholder"
 }
 
 # Criação da Tabela DynamoDB
