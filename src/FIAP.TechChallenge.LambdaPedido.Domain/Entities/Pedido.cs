@@ -3,7 +3,7 @@ using FIAP.TechChallenge.LambdaPedido.Domain.Entities.Enum;
 
 namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
 {
-    [DynamoDBTable("pedidos")]
+    [DynamoDBTable("PedidoTable")]
     public class Pedido
     {
         [DynamoDBHashKey("id")]

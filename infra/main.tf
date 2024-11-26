@@ -70,3 +70,25 @@ resource "aws_lambda_function" "pedido_function" {
 
   handler = "unused_handler_placeholder"
 }
+
+# Criação da Tabela DynamoDB
+resource "aws_dynamodb_table" "pedido_table" {
+  name         = "PedidoTable"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
+
+  attribute {
+    name = "id"
+    type = "N" # Tipo da chave: "S" para string, "N" para número, "B" para binário
+  }
+
+  # Opcional: Definição de uma chave de classificação (range key)
+  #attribute {
+  #  name = "id_guid"
+  #  type = "S"
+  #}
+
+  tags = {
+    Team = "Grupo12TechChallenge"
+  }
+}
