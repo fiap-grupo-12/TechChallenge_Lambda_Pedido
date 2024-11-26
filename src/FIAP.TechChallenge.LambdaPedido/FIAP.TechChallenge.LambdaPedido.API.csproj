@@ -12,6 +12,7 @@
     <PublishReadyToRun>false</PublishReadyToRun>
     <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
     <AWSSuppressLambdaAnnotationsTelemetry>true</AWSSuppressLambdaAnnotationsTelemetry>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Properties\launchSettings.Development.json" />
