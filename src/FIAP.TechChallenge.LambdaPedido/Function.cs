@@ -48,8 +48,8 @@ public class Function
 
     [LambdaFunction(ResourceName = "ObterPedidoPorId")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/{id}")]
-    public async Task<PedidoResponse> GetPedidoPorId(Guid id)
-        => await _obterPedidoPorId.Execute(id);
+    public async Task<PedidoResponse> GetPedidoPorId(string id)
+        => await _obterPedidoPorId.Execute(Guid.Parse(id));
 
     [LambdaFunction(ResourceName = "ListarPedidos")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido")]
@@ -63,8 +63,8 @@ public class Function
 
     [LambdaFunction(ResourceName = "StatusDoPagamentoPorId")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/StatusPagamento/{id}")]
-    public async Task<StatusPagamentoResponse> GetStatusPag(Guid id)
-        => await _obterStatusPagamentoPorId.Execute(id);
+    public async Task<StatusPagamentoResponse> GetStatusPag(string id)
+        => await _obterStatusPagamentoPorId.Execute(Guid.Parse(id));
 
     [LambdaFunction(ResourceName = "AtualizarStatusDoPedido")]
     [HttpApi(LambdaHttpMethod.Put, "/Pedido/StatusPedido")]
