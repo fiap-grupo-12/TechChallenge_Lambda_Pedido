@@ -8,7 +8,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Request
         [JsonPropertyName("valorTotal")]
         public double? ValorTotal { get; set; }
 
-        [JsonPropertyName("cpf")]
+        [JsonPropertyName("cliente")]
         public ClienteRequest? Cliente { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar ao menos 1 PRODUTO para finalizar o pedido.")]

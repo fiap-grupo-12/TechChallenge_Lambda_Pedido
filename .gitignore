@@ -1,72 +1,16 @@
-﻿# Ignorar arquivos binários
-*.dll
-*.exe
-*.so
-*.dylib
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
 
-# Ignorar arquivos gerados pelo build
-bin/
-obj/
-
-# Ignorar arquivos de configuração de IDE
-.vscode/
-.idea/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-out/
-
-# Ignorar arquivos específicos do Visual Studio
-*.csproj.user
-*.vcxproj.user
-*.vcxproj.filters
-*.pdb
-*.ipch
-*.aps
-*.ncb
-*.opendb
-*.opensdf
-*.sdf
-*.cache
-*.log
-*.tlog
-*.lastbuildstate
-*.sqlite
-*.nuget
-*.g.cs
-*.g.i.cs
-*_ReSharper.*
-_ReSharper.Caches/
-
-# Ignorar pacotes NuGet
-*.nupkg
-*.snupkg
-packages/
 /.vs
-/src/.vs
-/src/FIAP.TechChallenge.LambdaPedido/obj/Release/*
-/src/FIAP.TechChallenge.LambdaPedido/obj/*
-/src/FIAP.TechChallenge.LambdaPedido/obj/Release/net8.0/*
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/*
-/src/FIAP.TechChallenge.LambdaPedido/obj/*
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Debug/net8.0/*
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Debug/net8.0/*
-/src/FIAP.TechChallenge.LambdaPedido.Application/obj/Debug/net8.0/*
-/src/FIAP.TechChallenge.LambdaPedido.Application/obj/Debug/net8.0/*
-*/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/*.cache
-/src/coverage/*
-/src/FIAP.TechChallenge.LambdaPedido.Application/obj/FIAP.TechChallenge.LambdaPedido.Application.csproj.nuget.dgspec.json
-/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/FIAP.TechChallenge.LambdaPedido.Domain.csproj.nuget.dgspec.json
-/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.assets.cache
-/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/FIAP.TechChallenge.LambdaPedido.Domain.csproj.nuget.g.targets
-/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/project.assets.json
-/src/FIAP.TechChallenge.LambdaPedido.Infra/obj/FIAP.TechChallenge.LambdaPedido.Infra.csproj.nuget.dgspec.json
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.AssemblyInfoInputs.cache
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/FIAP.TechChallenge.LambdaPedido.Tests.csproj.nuget.g.props
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.assets.cache
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/FIAP.TechChallenge.LambdaPedido.Tests.csproj.nuget.g.targets
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/project.assets.json
-/src/FIAP.TechChallenge.LambdaPedido.Tests/coverage.json
-/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.AssemblyInfo.cs
-/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.AssemblyInfo.cs
+/src/FIAP.TechChallenge.LambdaPedido.Tests/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.Tests.dll._asi_refs
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/FIAP.TechChallenge.LambdaPedido.Domain.csproj.nuget.g.props
+/src/FIAP.TechChallenge.LambdaPedido.Domain/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.Domain.csproj.AssemblyReference.cache
+/src/FIAP.TechChallenge.LambdaPedido.Infra/obj/FIAP.TechChallenge.LambdaPedido.Infra.csproj.nuget.g.props
+/src/FIAP.TechChallenge.LambdaPedido.Infra/obj/project.assets.json
+/src/FIAP.TechChallenge.LambdaPedido.Application/obj/FIAP.TechChallenge.LambdaPedido.Application.csproj.nuget.g.props
+/src/FIAP.TechChallenge.LambdaPedido.Application/obj/project.assets.json
+/src/FIAP.TechChallenge.LambdaPedido/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.API.assets.cache
+/src/FIAP.TechChallenge.LambdaPedido/obj/Debug/net8.0/FIAP.TechChallenge.LambdaPedido.API.dll._asi_refs
+/src/FIAP.TechChallenge.LambdaPedido/obj/Release/net8.0/FIAP.TechChallenge.LambdaPedido.API.csproj.AssemblyReference.cache
+/src/FIAP.TechChallenge.LambdaPedido/obj/FIAP.TechChallenge.LambdaPedido.API.csproj.nuget.g.props

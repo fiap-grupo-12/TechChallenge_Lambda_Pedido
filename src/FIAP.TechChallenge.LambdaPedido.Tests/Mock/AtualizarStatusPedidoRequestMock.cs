@@ -8,7 +8,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Tests.Mock
         public static AtualizarStatusPedidoRequest AtualizarStatusPedidoRequestFaker(StatusPedido status) =>
             new AtualizarStatusPedidoRequest
             {
-                Id = new Random().Next(),
+                Id = new Guid(),
                 StatusPedido = status
             };
     }

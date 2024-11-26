@@ -4,8 +4,8 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Response
 {
     public class PedidoResponse
     {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
+        //[JsonPropertyName("id")]
+        //public int Id { get; set; }
 
         [JsonPropertyName("idGuid")]
         public Guid IdGuid { get; set; }

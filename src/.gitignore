@@ -1,45 +1,46 @@
-# Ignorar arquivos binários
-*.dll
-*.exe
-*.so
-*.dylib
+.env
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
 
-# Ignorar arquivos gerados pelo build
-bin/
-obj/
-
-# Ignorar arquivos de configuração de IDE
+# Visual Studio Code
 .vscode/
+
+# Rider
 .idea/
+
+# Visual Studio
+.vs/
+
+# Fleet
+.fleet/
+
+# Code Rush
+.cr/
+
+# User-specific files
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-out/
 
-# Ignorar arquivos específicos do Visual Studio
-*.csproj.user
-*.vcxproj.user
-*.vcxproj.filters
-*.pdb
-*.ipch
-*.aps
-*.ncb
-*.opendb
-*.opensdf
-*.sdf
-*.cache
-*.log
-*.tlog
-*.lastbuildstate
-*.sqlite
-*.nuget
-*.g.cs
-*.g.i.cs
-*_ReSharper.*
-_ReSharper.Caches/
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
 
-# Ignorar pacotes NuGet
-*.nupkg
-*.snupkg
-packages/
+Logs/

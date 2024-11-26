@@ -25,7 +25,7 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_CriarPedidoAsync_Generated::CriarPedidoAsync",
+        "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_CriarPedido_Generated::CriarPedido",
         "Events": {
           "RootPost": {
             "Type": "HttpApi",
@@ -210,23 +210,6 @@
             }
           }
         }
-      }
-    },
-    "FIAPTechChallengeLambdaPedidoAPIFunctionPutStatusPagGenerated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations"
-      },
-      "Properties": {
-        "Runtime": "dotnet8",
-        "CodeUri": ".",
-        "MemorySize": 512,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_PutStatusPag_Generated::PutStatusPag"
       }
     }
   }

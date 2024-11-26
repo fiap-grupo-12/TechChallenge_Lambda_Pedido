@@ -1,16 +1,19 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
+using FIAP.TechChallenge.LambdaPedido.Domain.ConvertObject;
 using FIAP.TechChallenge.LambdaPedido.Domain.Entities.Enum;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
 {
+    [ExcludeFromCodeCoverage]
     [DynamoDBTable("PedidoTable")]
     public class Pedido
     {
-        [DynamoDBHashKey("id")]
-        public int Id { get; set; }
+        //[DynamoDBHashKey("id")]
+        //public int Id { get; set; }
 
-        [DynamoDBProperty("id_guid")]
-        public Guid IdGuid { get; set; }
+        [DynamoDBHashKey("id")]
+        public Guid Id { get; set; }
 
         [DynamoDBProperty("cliente")]
         public Cliente Cliente { get; set; }
@@ -18,7 +21,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
         [DynamoDBProperty("forma_pagamento")]
         public FormaPagamento FormaPagamento { get; set; }
 
-        [DynamoDBProperty("itens_pedido")]
+        [DynamoDBProperty(Converter = typeof(ItemDePedidoListConverter))]
         public IList<ItemDePedido> ItensDePedido { get; set; }
 
         [DynamoDBProperty("data_criacao")]

@@ -79,7 +79,7 @@ resource "aws_dynamodb_table" "pedido_table" {
 
   attribute {
     name = "id"
-    type = "N" # Tipo da chave: "S" para string, "N" para número, "B" para binário
+    type = "S" # Tipo da chave: "S" para string, "N" para número, "B" para binário
   }
 
   # Opcional: Definição de uma chave de classificação (range key)

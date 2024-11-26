@@ -6,8 +6,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Tests.Mock
     {
         public static Pedido PedidoFake() => new()
         {
-            Id = new Random().Next(),
-            IdGuid = new Guid(),
+            Id = new Guid(),
             DataCriacao = DateTime.Now,
             StatusPagamento = Domain.Entities.Enum.StatusPagamento.Pendente,
             Cliente = ClienteMock.ClienteFake(),

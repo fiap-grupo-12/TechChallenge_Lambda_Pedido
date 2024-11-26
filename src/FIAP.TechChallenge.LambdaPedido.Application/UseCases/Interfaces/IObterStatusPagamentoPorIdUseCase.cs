@@ -2,7 +2,7 @@
 
 namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases.Interfaces
 {
-    public interface IObterStatusPagamentoPorIdUseCase : IUseCaseAsync<int, StatusPagamentoResponse>
+    public interface IObterStatusPagamentoPorIdUseCase : IUseCaseAsync<Guid, StatusPagamentoResponse>
     {
     }
 }

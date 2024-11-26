@@ -47,8 +47,8 @@ public class ApplicationTest
         var atualizacaoFake = AtualizarStatusPagamentoRequestMock.AtualizarStatusPagamentoRequestFaker(statusPagamento);
         var pedidoFake = PedidoMock.PedidoFake();
 
-        _pedidoRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(Task.FromResult(pedidoFake));
-        _pedidoRepository.Setup(x => x.Update(It.IsAny<Pedido>(), It.IsAny<int>())).Returns(Task.CompletedTask);
+        _pedidoRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(Task.FromResult(pedidoFake));
+        _pedidoRepository.Setup(x => x.Update(It.IsAny<Pedido>(), It.IsAny<Guid>())).Returns(Task.CompletedTask);
 
         var exec = new AtualizarStatusPagamentoUseCase(_pedidoRepository.Object);
 
@@ -65,8 +65,8 @@ public class ApplicationTest
         // Arrange
         var atualizacaoFake = AtualizarStatusPagamentoRequestMock.AtualizarStatusPagamentoRequestFaker(StatusPagamento.Pendente);
 
-        _pedidoRepository.Setup(x => x.GetById(It.IsAny<int>())).ThrowsAsync(new Exception());
-        _pedidoRepository.Setup(x => x.Update(It.IsAny<Pedido>(), It.IsAny<int>())).Returns(Task.CompletedTask);
+        _pedidoRepository.Setup(x => x.GetById(It.IsAny<Guid>())).ThrowsAsync(new Exception());
+        _pedidoRepository.Setup(x => x.Update(It.IsAny<Pedido>(), It.IsAny<Guid>())).Returns(Task.CompletedTask);
 
         var exec = new AtualizarStatusPagamentoUseCase(_pedidoRepository.Object);
 
@@ -93,8 +93,8 @@ public class ApplicationTest
         var atualizacaoFake = AtualizarStatusPedidoRequestMock.AtualizarStatusPedidoRequestFaker(statusPedido);
         var pedidoFake = PedidoMock.PedidoFake();
 
-        _pedidoRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(Task.FromResult(pedidoFake));
-        _pedidoRepository.Setup(x => x.Update(It.IsAny<Pedido>(), It.IsAny<int>())).Returns(Task.CompletedTask);
+        _pedidoRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(Task.FromResult(pedidoFake));
+        _pedidoRepository.Setup(x => x.Update(It.IsAny<Pedido>(), It.IsAny<Guid>())).Returns(Task.CompletedTask);
 
         var exec = new AtualizarStatusPedidoUseCase(_pedidoRepository.Object);
 
@@ -129,7 +129,7 @@ public class ApplicationTest
         // Arrange
         var pedidoFake = PedidoMock.PedidoFake();
 
-        _pedidoRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(Task.FromResult(pedidoFake));
+        _pedidoRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(Task.FromResult(pedidoFake));
 
         var exec = new ObterPedidoPorIdUseCase(_pedidoRepository.Object, _mapper);
 
@@ -193,7 +193,7 @@ public class ApplicationTest
 
         var pedidoMock = PedidoMock.PedidoFake();
 
-        _pedidoRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(Task.FromResult(pedidoMock));
+        _pedidoRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(Task.FromResult(pedidoMock));
 
         var exec = new ObterStatusPagamentoPorIdUseCase(_pedidoRepository.Object, _mapper);
 

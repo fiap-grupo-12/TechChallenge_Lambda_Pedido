@@ -1,10 +1,10 @@
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Annotations.APIGateway;
 using Amazon.Lambda.Core;
-using Amazon.Lambda.SQSEvents;
 using FIAP.TechChallenge.LambdaPedido.Application.Models.Request;
+using FIAP.TechChallenge.LambdaPedido.Application.Models.Response;
 using FIAP.TechChallenge.LambdaPedido.Application.UseCases.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 using FromBodyAttribute = Amazon.Lambda.Annotations.APIGateway.FromBodyAttribute;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -12,9 +12,8 @@ using FromBodyAttribute = Amazon.Lambda.Annotations.APIGateway.FromBodyAttribute
 
 namespace FIAP.TechChallenge.LambdaPedido.API;
 
-[ApiController]
-[Route("api/Pedido")]
-public class Function : Controller
+[ExcludeFromCodeCoverage]
+public class Function
 {
     private readonly IObterPedidosUseCase _obterPedidos;
     private readonly IObterPedidosFiltradosUseCase _obterPedidosFiltrados;
@@ -42,108 +41,33 @@ public class Function : Controller
         _atualizarStatusPagamento = atualizarStatusPagamento;
     }
 
-    [HttpPost]
     [LambdaFunction(ResourceName = "CriarPedido")]
     [HttpApi(LambdaHttpMethod.Post, "/Pedido")]
-    public async Task<IActionResult> CriarPedidoAsync([FromBody] CriarPedidoRequest request)
-    {
-        try
-        {
-            var retorno = await _criarPedido.Execute(request);
-            return StatusCode(201, retorno);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }
-    }
+    public async Task<PedidoResponse> CriarPedido([FromBody] CriarPedidoRequest request)
+        => await _criarPedido.Execute(request);
 
-    [HttpGet]
     [LambdaFunction(ResourceName = "ObterPedidoPorId")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/{id}")]
-    public IActionResult GetPedidoPorId(int id)
-    {
-        try
-        {
-            var result = _obterPedidoPorId.Execute(id);
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }
-    }
+    public async Task<PedidoResponse> GetPedidoPorId(Guid id)
+        => await _obterPedidoPorId.Execute(id);
 
-    [HttpGet]
     [LambdaFunction(ResourceName = "ListarPedidos")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido")]
-    public IActionResult GetPedidos(ILambdaContext context)
-    {
-        try
-        {
-            var result = _obterPedidos.Execute();
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }
-    }
+    public async Task<IList<PedidoResponse>> GetPedidos(ILambdaContext context)
+        => await _obterPedidos.Execute();
 
-    [HttpGet]
     [LambdaFunction(ResourceName = "ListarPedidosFiltrados")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/Filtrados")]
-    public IActionResult GetFiltrados(ILambdaContext context)
-    {
-        try
-        {
-            var result = _obterPedidosFiltrados.Execute();
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }
-    }
+    public async Task<IList<PedidoResponse>> GetFiltrados(ILambdaContext context)
+        => await _obterPedidosFiltrados.Execute();
 
-    [HttpGet]
     [LambdaFunction(ResourceName = "StatusDoPagamentoPorId")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/StatusPagamento/{id}")]
-    public IActionResult GetStatusPag(int id)
-    {
-        try
-        {
-            var result = _obterStatusPagamentoPorId.Execute(id);
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }
-    }
+    public async Task<StatusPagamentoResponse> GetStatusPag(Guid id)
+        => await _obterStatusPagamentoPorId.Execute(id);
 
-    [HttpPut]
     [LambdaFunction(ResourceName = "AtualizarStatusDoPedido")]
     [HttpApi(LambdaHttpMethod.Put, "/Pedido/StatusPedido")]
-    public IActionResult PutStatusPedido([FromBody] AtualizarStatusPedidoRequest request)
-    {
-        try
-        {
-            _atualizarStatusPedido.Execute(request);
-            return NoContent();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex);
-        }
-    }
-
-    [LambdaFunction]
-    public async Task PutStatusPag(SQSEvent sqsEvent)
-    {
-        foreach (var record in sqsEvent.Records)
-        {
-            Console.WriteLine($"[{record.EventSource}] Body = {record.Body}");
-        }
-    }
+    public async Task<bool> PutStatusPedido([FromBody] AtualizarStatusPedidoRequest request)
+        => await _atualizarStatusPedido.Execute(request);
 }

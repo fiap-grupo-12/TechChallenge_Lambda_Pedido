@@ -8,7 +8,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Request
     {
         [Required(ErrorMessage = "É obrigatório informar o id do pedido.")]
         [JsonPropertyName("PedidoId")]
-        public int PedidoId { get; set; }
+        public Guid PedidoId { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar o status do pagamento.")]
         public StatusPagamento StatusPagamento { get; set; }

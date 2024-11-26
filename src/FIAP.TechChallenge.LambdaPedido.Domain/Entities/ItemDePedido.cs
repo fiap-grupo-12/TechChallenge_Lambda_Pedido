@@ -1,16 +1,18 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class ItemDePedido : EntityBase
     {
-        [DynamoDBProperty("nome")]
+        [DynamoDBProperty("Nome")]
         public string Nome { get; set; }
 
-        [DynamoDBProperty("valor")]
+        [DynamoDBProperty("Valor")]
         public double Valor { get; set; }
 
-        [DynamoDBProperty("quantidade")]
+        [DynamoDBProperty("Quantidade")]
         public int Quantidade { get; set; }
     }
 

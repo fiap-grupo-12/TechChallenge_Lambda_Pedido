@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel;
 using FIAP.TechChallenge.LambdaPedido.Domain.Entities;
 using FIAP.TechChallenge.LambdaPedido.Domain.Entities.Enum;
 using FIAP.TechChallenge.LambdaPedido.Domain.Repositories;
@@ -26,7 +27,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Repositories
             }
         }
 
-        public async Task<Pedido> GetById(int Id)
+        public async Task<Pedido> GetById(Guid Id)
         {
             try
             {
@@ -44,7 +45,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Repositories
             {
                 var condition = new List<ScanCondition>()
                 {
-                    new ScanCondition("status",Amazon.DynamoDBv2.DocumentModel.ScanOperator.Equal,status)
+                    new ScanCondition("StatusPedido",ScanOperator.Equal,status)
                 };
 
                 return await _context.ScanAsync<Pedido>(condition).GetRemainingAsync();
@@ -61,7 +62,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Repositories
             {
                 var condition = new List<ScanCondition>()
                 {
-                    new ScanCondition("status",Amazon.DynamoDBv2.DocumentModel.ScanOperator.NotEqual,StatusPedido.Finalizado)
+                    new ScanCondition("StatusPedido",ScanOperator.NotEqual,StatusPedido.Finalizado)
                 };
 
                 return await _context.ScanAsync<Pedido>(condition).GetRemainingAsync();
@@ -76,13 +77,13 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Repositories
         {
             try
             {
-                pedido.IdGuid = Guid.NewGuid();
+                pedido.Id = Guid.NewGuid();
 
                 await _context.SaveAsync(pedido);
 
                 var condition = new List<ScanCondition>()
                 {
-                    new ScanCondition("id_guid", Amazon.DynamoDBv2.DocumentModel.ScanOperator.NotEqual,pedido.IdGuid)
+                    new ScanCondition("IdGuid", ScanOperator.Equal,pedido.Id)
                 };
 
                 var result = await _context.ScanAsync<Pedido>(condition).GetRemainingAsync();
@@ -95,7 +96,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Repositories
             }
         }
 
-        public async Task Update(Pedido pedido, int Id)
+        public async Task Update(Pedido pedido, Guid Id)
         {
             try
             {
