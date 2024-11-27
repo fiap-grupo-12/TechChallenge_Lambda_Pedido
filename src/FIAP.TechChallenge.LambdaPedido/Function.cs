@@ -67,7 +67,7 @@ public class Function
                         if (parameter.CustomAttributes.Count() > 0)
                             parameters.Add(Newtonsoft.Json.JsonConvert.DeserializeObject(request.Body, Type.GetType(parameter.ParameterType.AssemblyQualifiedName)));
                         else
-                            foreach (var stringParameters in request.QueryStringParameters.Where(x => x.Key == parameter.Name))
+                            foreach (var stringParameters in request.PathParameters.Where(x => x.Key == parameter.Name))
                                 parameters.Add(stringParameters.Value);
 
                     var resultAsync = method.Invoke(this, [.. parameters]);
