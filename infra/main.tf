@@ -63,12 +63,10 @@ resource "aws_lambda_function" "pedido_function" {
   runtime       = "dotnet8"
   memory_size   = 512
   timeout       = 30
-
+  handler       = "FIAP.TechChallenge.LambdaPedido.API::FIAP.TechChallenge.LambdaPedido.API.Function_Handler_Generated::Handler"
   # Código armazenado no S3
   s3_bucket = "code-lambdas-functions"
   s3_key    = "lambda_pedido_function.zip"
-
-  handler = "unused_handler_placeholder"
 }
 
 # Criação da Tabela DynamoDB

@@ -1,5 +1,6 @@
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Annotations.APIGateway;
+using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using FIAP.TechChallenge.LambdaPedido.Application.Models.Request;
 using FIAP.TechChallenge.LambdaPedido.Application.Models.Response;
@@ -41,32 +42,65 @@ public class Function
         _atualizarStatusPagamento = atualizarStatusPagamento;
     }
 
-    [LambdaFunction(ResourceName = "CriarPedido")]
+    [LambdaFunction(ResourceName = "Handler")]
+    public async Task<object> Handler(APIGatewayProxyRequest request, ILambdaContext context)
+    {
+        bool methodOk = false;
+        List<object> parameters = new List<object>();
+
+        LambdaHttpMethod httpMethod = Enum.Parse<LambdaHttpMethod>(request.HttpMethod, true);
+
+        foreach (var method in this.GetType().GetMethods().Where(x => x.Name != "Handler"))
+        {
+            foreach (var attributes in method.CustomAttributes.Where(x => x.ConstructorArguments.Count > 1))
+            {
+                int methodType = (int)attributes.ConstructorArguments.FirstOrDefault(x => x.ArgumentType.Name == "LambdaHttpMethod").Value;
+                var pathType = attributes.ConstructorArguments.FirstOrDefault(x => x.ArgumentType.Name == "String").Value.ToString();
+
+                methodOk = httpMethod == (LambdaHttpMethod)methodType && string.Equals(pathType, request.Resource, StringComparison.CurrentCultureIgnoreCase);
+            }
+            if (methodOk)
+            {
+                foreach (var parameter in method.GetParameters())
+                    if (parameter.CustomAttributes.Count() > 0)
+                        parameters.Add(Newtonsoft.Json.JsonConvert.DeserializeObject(request.Body, Type.GetType(parameter.ParameterType.AssemblyQualifiedName)));
+                    else
+                        foreach (var stringParameters in request.QueryStringParameters.Where(x => x.Key == parameter.Name))
+                            parameters.Add(stringParameters.Value);
+
+                var resultAsync = method.Invoke(this, [.. parameters]);
+
+                if (resultAsync is Task task)
+                {
+                    await task;
+                    var resultProperty = task.GetType().GetProperty("Result");
+                    return resultProperty?.GetValue(task);
+                }
+            }
+        }
+        return null;
+    }
+
     [HttpApi(LambdaHttpMethod.Post, "/Pedido")]
     public async Task<PedidoResponse> CriarPedido([FromBody] CriarPedidoRequest request)
         => await _criarPedido.Execute(request);
 
-    [LambdaFunction(ResourceName = "ObterPedidoPorId")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/{id}")]
-    public async Task<PedidoResponse> GetPedidoPorId(Guid id)
-        => await _obterPedidoPorId.Execute(id);
+    public async Task<PedidoResponse> GetPedidoPorId(string id)
+        => await _obterPedidoPorId.Execute(Guid.Parse(id));
 
-    [LambdaFunction(ResourceName = "ListarPedidos")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido")]
-    public async Task<IList<PedidoResponse>> GetPedidos(ILambdaContext context)
+    public async Task<IList<PedidoResponse>> GetPedidos()
         => await _obterPedidos.Execute();
 
-    [LambdaFunction(ResourceName = "ListarPedidosFiltrados")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/Filtrados")]
-    public async Task<IList<PedidoResponse>> GetFiltrados(ILambdaContext context)
+    public async Task<IList<PedidoResponse>> GetFiltrados()
         => await _obterPedidosFiltrados.Execute();
 
-    [LambdaFunction(ResourceName = "StatusDoPagamentoPorId")]
     [HttpApi(LambdaHttpMethod.Get, "/Pedido/StatusPagamento/{id}")]
-    public async Task<StatusPagamentoResponse> GetStatusPag(Guid id)
-        => await _obterStatusPagamentoPorId.Execute(id);
+    public async Task<StatusPagamentoResponse> GetStatusPag(string id)
+        => await _obterStatusPagamentoPorId.Execute(Guid.Parse(id));
 
-    [LambdaFunction(ResourceName = "AtualizarStatusDoPedido")]
     [HttpApi(LambdaHttpMethod.Put, "/Pedido/StatusPedido")]
     public async Task<bool> PutStatusPedido([FromBody] AtualizarStatusPedidoRequest request)
         => await _atualizarStatusPedido.Execute(request);

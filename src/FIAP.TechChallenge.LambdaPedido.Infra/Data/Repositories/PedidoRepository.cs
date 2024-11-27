@@ -81,14 +81,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Repositories
 
                 await _context.SaveAsync(pedido);
 
-                var condition = new List<ScanCondition>()
-                {
-                    new ScanCondition("IdGuid", ScanOperator.Equal,pedido.Id)
-                };
-
-                var result = await _context.ScanAsync<Pedido>(condition).GetRemainingAsync();
-
-                return result.FirstOrDefault();
+                return pedido;
             }
             catch (Exception ex)
             {

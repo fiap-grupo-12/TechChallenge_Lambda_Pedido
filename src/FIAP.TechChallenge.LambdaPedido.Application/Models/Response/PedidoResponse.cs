@@ -7,8 +7,8 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Response
         //[JsonPropertyName("id")]
         //public int Id { get; set; }
 
-        [JsonPropertyName("idGuid")]
-        public Guid IdGuid { get; set; }
+        [JsonPropertyName("id")]
+        public Guid Id { get; set; }
 
         [JsonPropertyName("dataCriacao")]
         public DateTime? DataCriacao { get; set; }
