@@ -80,7 +80,7 @@ public class Function
                         return new APIGatewayProxyResponse
                         {
                             StatusCode = 200,
-                            Body = resultProperty?.GetValue(task).ToString(),
+                            Body = Newtonsoft.Json.JsonConvert.SerializeObject(resultProperty?.GetValue(task)),
                             Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                         };
                     }
