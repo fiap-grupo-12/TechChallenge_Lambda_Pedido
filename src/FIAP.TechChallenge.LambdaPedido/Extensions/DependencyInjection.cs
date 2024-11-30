@@ -1,11 +1,13 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.SQS;
 using AutoMapper;
 using FIAP.TechChallenge.LambdaPedido.Application.UseCases;
 using FIAP.TechChallenge.LambdaPedido.Application.UseCases.Interfaces;
 using FIAP.TechChallenge.LambdaPedido.Domain.Repositories;
 using FIAP.TechChallenge.LambdaPedido.Infra.Data.Configurations;
 using FIAP.TechChallenge.LambdaPedido.Infra.Data.Repositories;
+using FIAP.TechChallenge.LambdaPedido.Infra.Message;
 using System.Diagnostics.CodeAnalysis;
 
 namespace FIAP.TechChallenge.LambdaPedido.API.Extensions
@@ -19,6 +21,7 @@ namespace FIAP.TechChallenge.LambdaPedido.API.Extensions
             //AWS
             services.AddAWSService<IAmazonDynamoDB>();
             services.AddTransient<IDynamoDBContext, DynamoDBContext>();
+            services.AddAWSService<IAmazonSQS>();
 
             //AutoMapper
             var mapperConfig = new MapperConfiguration(mc =>
@@ -31,6 +34,7 @@ namespace FIAP.TechChallenge.LambdaPedido.API.Extensions
 
             //Repository
             services.AddTransient<IPedidoRepository, PedidoRepository>();
+            services.AddTransient<IMensageriaSolicitaPagamento, MensageriaSolicitaPagamento>();
 
             //UseCase
             services.AddTransient<ICriarPedidoUseCase, CriarPedidoUseCase>();

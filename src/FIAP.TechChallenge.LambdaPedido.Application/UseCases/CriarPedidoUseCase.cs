@@ -5,11 +5,13 @@ using FIAP.TechChallenge.LambdaPedido.Application.UseCases.Interfaces;
 using FIAP.TechChallenge.LambdaPedido.Domain.Entities;
 using FIAP.TechChallenge.LambdaPedido.Domain.Entities.Enum;
 using FIAP.TechChallenge.LambdaPedido.Domain.Repositories;
+using Newtonsoft.Json;
 
 namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
 {
     public class CriarPedidoUseCase(
         IPedidoRepository pedidoRepository,
+        IMensageriaSolicitaPagamento mensageria,
         IMapper mapper) : ICriarPedidoUseCase
     {
         private readonly IPedidoRepository _pedidoRepository = pedidoRepository;
@@ -28,6 +30,12 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
             };
 
             var result = await _pedidoRepository.Post(pedido);
+
+            await mensageria.SendMessage(JsonConvert.SerializeObject(new
+            {
+                idPedido = pedido.Id,
+                valor = pedido.ValorTotal
+            }));
 
             return _mapper.Map<PedidoResponse>(result);
         }

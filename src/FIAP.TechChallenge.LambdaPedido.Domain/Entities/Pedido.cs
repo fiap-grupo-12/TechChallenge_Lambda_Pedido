@@ -15,6 +15,9 @@ namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
         [DynamoDBHashKey("id")]
         public Guid Id { get; set; }
 
+        [DynamoDBProperty("valor_total")]
+        public double? ValorTotal { get; set; }
+
         [DynamoDBProperty("cliente")]
         public Cliente Cliente { get; set; }
 
