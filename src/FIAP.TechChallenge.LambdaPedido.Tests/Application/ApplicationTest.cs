@@ -22,6 +22,7 @@ public class ApplicationTest
     private readonly Mock<IAtualizarStatusPedidoUseCase> _atualizarStatusPedido;
     private readonly Mock<IAtualizarStatusPagamentoUseCase> _atualizarStatusPagamento;
     private readonly Mock<IPedidoRepository> _pedidoRepository;
+    private readonly Mock<IMensageriaSolicitaPagamento> _mensageria;
     private readonly IMapper _mapper;
 
     public ApplicationTest()
@@ -35,6 +36,7 @@ public class ApplicationTest
         _atualizarStatusPagamento = new Mock<IAtualizarStatusPagamentoUseCase>();
         _pedidoRepository = new Mock<IPedidoRepository>();
         _mapper = new MapperConfiguration(c => c.AddProfile<MapperConfig>()).CreateMapper();
+        _mensageria = new Mock<IMensageriaSolicitaPagamento>();
     }
 
     [Theory]
@@ -113,8 +115,9 @@ public class ApplicationTest
         var pedidoFake = PedidoMock.PedidoFake();
 
         _pedidoRepository.Setup(x => x.Post(It.IsAny<Pedido>())).Returns(Task.FromResult(pedidoFake));
+        _mensageria.Setup(x => x.SendMessage(It.IsAny<string>())).Returns(Task.CompletedTask);
 
-        var exec = new CriarPedidoUseCase(_pedidoRepository.Object, _mapper);
+        var exec = new CriarPedidoUseCase(_pedidoRepository.Object, _mensageria.Object, _mapper);
 
         // Act
         var result = await exec.Execute(criarPedidoFake);

@@ -12,7 +12,8 @@ namespace FIAP.TechChallenge.LambdaPedido.Tests.Mock
             Cliente = ClienteMock.ClienteFake(),
             FormaPagamento = FormaPagamentoMock.FormaPagamentoFake(),
             StatusPedido = Domain.Entities.Enum.StatusPedido.Recebido,
-            ItensDePedido = ItemPedidoMock.ItensPedidoFake()
+            ItensDePedido = ItemPedidoMock.ItensPedidoFake(),
+            ValorTotal = 100
         };
     }
 }
