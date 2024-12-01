@@ -81,12 +81,11 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"soat-fiap_bmb.payment" /o:"soat-fiap" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"  /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.inclusions=**/*.cs /d:sonar.scanner.scanAll=false
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"soat-fiap_bmb.payment" /o:"soat-fiap" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"  /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.inclusions=**/*.cs /d:sonar.scanner.scanAll=false /d:sonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido /d:sonar.organization=fiap-grupo-12
           dotnet build --no-incremental
           dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-          -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido
-          -Dsonar.organization=fiap-grupo-12
+
 
 #            -Dsonar.cs.opencover.reportsPaths=coverage/**/coverage.opencover.xml
 
