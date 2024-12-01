@@ -21,10 +21,10 @@ namespace FIAP.TechChallenge.LambdaPedido.Tests.Mock
             .CustomInstantiator(f =>
                 new ItemDePedidoRequest()
                 {
-                    IdProduto = new Random().Next(),
+                    Id = new Random().Next(),
                     Nome = f.Commerce.ProductName(),
                     Quantidade = new Random().Next(10),
-                    ValorUnitario = new Random().Next(5, 20)
+                    Valor = new Random().Next(5, 20)
                 }
             ).Generate(5);
     }

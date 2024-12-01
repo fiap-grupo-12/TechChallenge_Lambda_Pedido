@@ -1,5 +1,5 @@
 {
-  "body": "{ \"valorTotal\": 150.50, \"cliente\": { \"id\": 1, \"nome\": \"João Silva\", \"cpf\": \"12345678901\" }, \"produtoQuantidades\": [ { \"idProduto\": 101, \"nome\": \"Produto A\", \"quantidade\": 2, \"valorUnitario\": 50.25 } ], \"idFormaPagamento\": { \"id\": 1, \"nome\": \"Cartão de Crédito\" } }",
+  "body": "{ \"valorTotal\": 150.50, \"cliente\": { \"id\": \"bb600ac7-cbd4-4b0a-81d8-42f1ad4f7e97\", \"nome\": \"João Silva\", \"cpf\": \"12345678901\" }, \"itensDoPedido\": [ { \"id\": 101, \"nome\": \"Produto A\", \"quantidade\": 2, \"valor\": 50.25 } ], \"formaPagamento\": { \"id\": \"bb600ac7-cbd4-4b0a-81d8-42f1ad4f7e97\", \"nome\": \"Cartão de Crédito\" } }",
   "resource": "/Pedido",
   "path": "/path/to/resource",
   "httpMethod": "POST",

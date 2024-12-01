@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
+using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
 
 namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
@@ -7,15 +8,19 @@ namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
     public class ItemDePedido
     {
         [DynamoDBProperty("id")]
+        [JsonProperty("id")]
         public int Id { get; set; }
 
-        [DynamoDBProperty("Nome")]
+        [DynamoDBProperty("nome")]
+        [JsonProperty("nome")]
         public string Nome { get; set; }
 
-        [DynamoDBProperty("Valor")]
+        [DynamoDBProperty("valor")]
+        [JsonProperty("valor")]
         public double Valor { get; set; }
 
-        [DynamoDBProperty("Quantidade")]
+        [DynamoDBProperty("quantidade")]
+        [JsonProperty("quantidade")]
         public int Quantidade { get; set; }
     }
 

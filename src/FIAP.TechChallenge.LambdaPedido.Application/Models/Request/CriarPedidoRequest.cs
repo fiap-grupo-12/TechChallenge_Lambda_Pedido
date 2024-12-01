@@ -1,63 +1,63 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Request
 {
     public class CriarPedidoRequest
     {
-        [JsonPropertyName("valorTotal")]
+        [JsonProperty("valorTotal")]
         public double? ValorTotal { get; set; }
 
-        [JsonPropertyName("cliente")]
+        [JsonProperty("cliente")]
         public ClienteRequest? Cliente { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar ao menos 1 PRODUTO para finalizar o pedido.")]
-        [JsonPropertyName("produtoQuantidades")]
+        [JsonProperty("itensDoPedido")]
         public List<ItemDePedidoRequest> ItensDoPedido { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar uma FORMA DE PAGAMENTO para finalizar o pedido.")]
-        [JsonPropertyName("idFormaPagamento")]
+        [JsonProperty("formaPagamento")]
         public FormaPagamentoRequest FormaPagamento { get; set; }
     }
 
     public class FormaPagamentoRequest
     {
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         public Guid Id { get; set; }
 
-        [JsonPropertyName("nome")]
+        [JsonProperty("nome")]
         public string Nome { get; set; }
     }
 
     public class ClienteRequest
     {
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         public Guid Id { get; set; }
 
-        [JsonPropertyName("nome")]
+        [JsonProperty("nome")]
         public string Nome { get; set; }
 
-        [JsonPropertyName("cpf")]
+        [JsonProperty("cpf")]
         public string CPF { get; set; }
     }
 
     public class ItemDePedidoRequest
     {
         [Required(ErrorMessage = "É obrigatório informar ao menos 1 PRODUTO para finalizar o pedido.")]
-        [JsonPropertyName("idProduto")]
-        public int IdProduto { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar ao menos 1 PRODUTO para finalizar o pedido.")]
-        [JsonPropertyName("nome")]
+        [JsonProperty("nome")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar ao menos 1 PRODUTO para finalizar o pedido.")]
-        [JsonPropertyName("quantidade")]
+        [JsonProperty("quantidade")]
         public int Quantidade { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar ao menos 1 PRODUTO para finalizar o pedido.")]
-        [JsonPropertyName("valorUnitario")]
-        public decimal ValorUnitario { get; set; }
+        [JsonProperty("valor")]
+        public decimal Valor { get; set; }
     }
 
 }
