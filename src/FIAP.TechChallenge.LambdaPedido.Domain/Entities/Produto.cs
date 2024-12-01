@@ -4,8 +4,11 @@ using System.Diagnostics.CodeAnalysis;
 namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
 {
     [ExcludeFromCodeCoverage]
-    public class Produto : EntityBase
+    public class Produto
     {
+        [DynamoDBProperty("id")]
+        public int Id { get; set; }
+
         [DynamoDBProperty("nome")]
         public string Nome { get; set; }
 

@@ -23,7 +23,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Request
     public class FormaPagamentoRequest
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonPropertyName("nome")]
         public string Nome { get; set; }
@@ -32,7 +32,7 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.Models.Request
     public class ClienteRequest
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonPropertyName("nome")]
         public string Nome { get; set; }

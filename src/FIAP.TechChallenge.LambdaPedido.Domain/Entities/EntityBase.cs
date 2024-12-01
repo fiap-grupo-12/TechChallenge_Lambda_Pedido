@@ -7,6 +7,6 @@ namespace FIAP.TechChallenge.LambdaPedido.Domain.Entities
     public abstract class EntityBase
     {
         [DynamoDBProperty("id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

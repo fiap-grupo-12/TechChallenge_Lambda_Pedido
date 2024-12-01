@@ -8,14 +8,14 @@ namespace FIAP.TechChallenge.LambdaPedido.Tests.Mock
         public static Cliente ClienteFake() => new Cliente()
         {
             CPF = "00000000000",
-            Id = new Random().Next(),
+            Id = new Guid(),
             Nome = "João da Silva"
         };
 
         public static ClienteRequest ClienteRequestFake() => new ClienteRequest()
         {
             CPF = "00000000000",
-            Id = new Random().Next(),
+            Id = new Guid(),
             Nome = "João da Silva"
         };
     }

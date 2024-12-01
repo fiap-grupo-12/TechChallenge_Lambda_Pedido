@@ -7,13 +7,13 @@ namespace FIAP.TechChallenge.LambdaPedido.Tests.Mock
     {
         public static FormaPagamento FormaPagamentoFake() => new FormaPagamento()
         {
-            Id = new Random().Next(),
+            Id = new Guid(),
             Nome = "PIX"
         };
 
         public static FormaPagamentoRequest FormaPagamentoRequestFake() => new FormaPagamentoRequest()
         {
-            Id = new Random().Next(),
+            Id = new Guid(),
             Nome = "PIX"
         };
     }

@@ -33,24 +33,55 @@ jobs:
 
   SonarCloud:
     needs: Build
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./src
-
+    runs-on: windows-latest
     steps:
-      - name: Checkout code
-        uses: actions/labeler@v4
-      - name: Analyze with SonarCloud
-        uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
-          args:
-            -Dsonar.projectKey=fiap-grupo-12_TechChallenge_Lambda_Pedido
-            -Dsonar.organization=fiap-grupo-12
-            -Dsonar.cs.opencover.reportsPaths=coverage/**/coverage.opencover.xml
-          projectBaseDir: .
+          java-version: 17
+          distribution: 'zulu'
+      
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v4
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+      
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      
+      - name: Install dotnet-coverage
+        # if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        run: |
+          dotnet tool install --global dotnet-coverage
+
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
+        run: |
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"soat-fiap_bmb.payment" /o:"soat-fiap" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"  /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.inclusions=**/*.cs /d:sonar.scanner.scanAll=false
+          dotnet build --no-incremental
+          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
   Publish:
     needs: SonarCloud
