@@ -26,7 +26,8 @@ namespace FIAP.TechChallenge.LambdaPedido.Application.UseCases
                 ItensDePedido = _mapper.Map<List<ItemDePedido>>(request.ItensDoPedido),
                 DataCriacao = DateTime.Now,
                 StatusPedido = StatusPedido.Recebido,
-                StatusPagamento = StatusPagamento.Pendente
+                StatusPagamento = StatusPagamento.Pendente,
+                ValorTotal = request.ValorTotal
             };
 
             var result = await _pedidoRepository.Post(pedido);
