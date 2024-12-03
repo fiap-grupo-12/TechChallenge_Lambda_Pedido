@@ -22,7 +22,6 @@ namespace FIAP.TechChallenge.LambdaPedido.Infra.Data.Configurations
             CreateMap<Cliente, ClienteResponse>().ReverseMap();
             CreateMap<FormaPagamento, FormaPagamentoResponse>().ReverseMap();
             CreateMap<ItemDePedido, ItensDePedidoResponse>().ReverseMap();
-            CreateMap<Produto, ProdutoResponse>().ReverseMap();
            
 
             CreateMap<Pedido, StatusPagamentoResponse>()

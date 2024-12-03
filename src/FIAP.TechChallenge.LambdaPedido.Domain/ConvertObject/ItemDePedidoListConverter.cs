@@ -2,9 +2,11 @@
 using Amazon.DynamoDBv2.DocumentModel;
 using FIAP.TechChallenge.LambdaPedido.Domain.Entities;
 using Newtonsoft.Json;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FIAP.TechChallenge.LambdaPedido.Domain.ConvertObject
 {
+    [ExcludeFromCodeCoverage]
     public class ItemDePedidoListConverter : IPropertyConverter
     {
         public DynamoDBEntry ToEntry(object value)
