@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FIAP.TechChallenge.LambdaPedido.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c1a31b48d8fe4ed93264120234cb5760c0ad3ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0122507a758d57e8def92dc66680116745ba0b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("FIAP.TechChallenge.LambdaPedido.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FIAP.TechChallenge.LambdaPedido.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
